@@ -43,7 +43,8 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
         break;
       case AppLifecycleState.inactive:
       case AppLifecycleState.paused:
-      case AppLifecycleState.suspending:
+      //case AppLifecycleState.suspending:
+      case AppLifecycleState.detached:
         if (widget.controller.value.isPlaying) {
           widget.controller?.pause();
           isSuspendingPaused = true;
