@@ -11,8 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^0.3.11+2
-  cached_network_image: ^1.1.1
+  webview_flutter: ^0.3.18+1
+  cached_network_image: 2.0.0-rc.1
 
 dev_dependencies:
   flutter_test:
