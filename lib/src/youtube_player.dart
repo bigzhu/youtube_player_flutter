@@ -218,7 +218,6 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
         controller.value.isEvaluationReady &&
         _firstLoad) {
       _firstLoad = false;
-      // print("bigzhu widget.flags.autoPlay=" + widget.flags.autoPlay.toString());
       widget.flags.autoPlay
           ? controller.load(startAt: widget.startAt.inSeconds)
           : controller.cue(startAt: widget.startAt.inSeconds);
@@ -276,10 +275,14 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
   @override
   Widget build(BuildContext context) {
     if (_currentVideoId != widget.videoId) {
-      //if (true) {
       _currentVideoId = widget.videoId;
       _loadController(webController: controller.value.webViewController);
-      controller.load(startAt: widget.startAt.inSeconds);
+
+      //controller.load(startAt: widget.startAt.inSeconds);
+      //bigzhu fixbug: load new video always auto play ignore autoPlay conf
+      widget.flags.autoPlay
+          ? controller.load(startAt: widget.startAt.inSeconds)
+          : controller.cue(startAt: widget.startAt.inSeconds);
     }
     return Container(
       width: widget.width ?? MediaQuery.of(widget.context).size.width,
