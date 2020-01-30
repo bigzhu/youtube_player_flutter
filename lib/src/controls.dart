@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/src/duration_formatter.dart';
-import 'package:youtube_player_flutter/src/progress_bar.dart';
-import 'package:youtube_player_flutter/src/youtube_player.dart';
+import './duration_formatter.dart';
+import './progress_bar.dart';
+import './youtube_player.dart';
 
 class PlayPauseButton extends StatefulWidget {
   final YoutubePlayerController controller;

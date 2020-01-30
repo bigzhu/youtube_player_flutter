@@ -33,6 +33,7 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    print("bigzhu!!! AppLifecycleState=" + state.toString());
     switch (state) {
       case AppLifecycleState.resumed:
         if (isSuspendingPaused) {

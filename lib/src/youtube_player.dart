@@ -5,8 +5,8 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:youtube_player_flutter/src/fullscreen_youtube_player.dart';
-import 'controls.dart';
+import './fullscreen_youtube_player.dart';
+import './controls.dart';
 import 'progress_bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'youtube_player_flags.dart';
@@ -218,6 +218,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
         controller.value.isEvaluationReady &&
         _firstLoad) {
       _firstLoad = false;
+      // print("bigzhu widget.flags.autoPlay=" + widget.flags.autoPlay.toString());
       widget.flags.autoPlay
           ? controller.load(startAt: widget.startAt.inSeconds)
           : controller.cue(startAt: widget.startAt.inSeconds);
@@ -275,6 +276,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
   @override
   Widget build(BuildContext context) {
     if (_currentVideoId != widget.videoId) {
+      //if (true) {
       _currentVideoId = widget.videoId;
       _loadController(webController: controller.value.webViewController);
       controller.load(startAt: widget.startAt.inSeconds);

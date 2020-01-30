@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/src/youtube_player.dart';
+import './youtube_player.dart';
 
 class ProgressBar extends StatefulWidget {
   ProgressBar(
