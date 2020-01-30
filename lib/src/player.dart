@@ -65,7 +65,8 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
           JavascriptChannel(
             name: 'Ready',
             onMessageReceived: (JavascriptMessage message) {
-              widget.controller.value = widget.controller.value.copyWith(isReady: true);
+              widget.controller.value =
+                  widget.controller.value.copyWith(isReady: true);
             },
           ),
           JavascriptChannel(
@@ -73,12 +74,12 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
             onMessageReceived: (JavascriptMessage message) {
               switch (message.message) {
                 case '-1':
-                  widget.controller.value = widget.controller.value
-                      .copyWith(playerState: PlayerState.UN_STARTED, isLoaded: true);
+                  widget.controller.value = widget.controller.value.copyWith(
+                      playerState: PlayerState.UN_STARTED, isLoaded: true);
                   break;
                 case '0':
-                  widget.controller.value =
-                      widget.controller.value.copyWith(playerState: PlayerState.ENDED);
+                  widget.controller.value = widget.controller.value
+                      .copyWith(playerState: PlayerState.ENDED);
                   break;
                 case '1':
                   widget.controller.value = widget.controller.value.copyWith(
@@ -95,12 +96,12 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
                   );
                   break;
                 case '3':
-                  widget.controller.value =
-                      widget.controller.value.copyWith(playerState: PlayerState.BUFFERING);
+                  widget.controller.value = widget.controller.value
+                      .copyWith(playerState: PlayerState.BUFFERING);
                   break;
                 case '5':
-                  widget.controller.value =
-                      widget.controller.value.copyWith(playerState: PlayerState.CUED);
+                  widget.controller.value = widget.controller.value
+                      .copyWith(playerState: PlayerState.CUED);
                   break;
                 default:
                   throw Exception("Invalid player state obtained.");
@@ -110,7 +111,7 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
           JavascriptChannel(
             name: 'PlaybackQualityChange',
             onMessageReceived: (JavascriptMessage message) {
-              print("PlaybackQualityChange ${message.message}");
+              //print("PlaybackQualityChange ${message.message}");
             },
           ),
           JavascriptChannel(
@@ -118,36 +119,36 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
             onMessageReceived: (JavascriptMessage message) {
               switch (message.message) {
                 case '2':
-                  widget.controller.value =
-                      widget.controller.value.copyWith(playbackRate: PlaybackRate.DOUBLE);
+                  widget.controller.value = widget.controller.value
+                      .copyWith(playbackRate: PlaybackRate.DOUBLE);
                   break;
                 case '1.5':
-                  widget.controller.value =
-                      widget.controller.value.copyWith(playbackRate: PlaybackRate.ONE_AND_A_HALF);
+                  widget.controller.value = widget.controller.value
+                      .copyWith(playbackRate: PlaybackRate.ONE_AND_A_HALF);
                   break;
                 case '1':
-                  widget.controller.value =
-                      widget.controller.value.copyWith(playbackRate: PlaybackRate.NORMAL);
+                  widget.controller.value = widget.controller.value
+                      .copyWith(playbackRate: PlaybackRate.NORMAL);
                   break;
                 case '0.5':
-                  widget.controller.value =
-                      widget.controller.value.copyWith(playbackRate: PlaybackRate.HALF);
+                  widget.controller.value = widget.controller.value
+                      .copyWith(playbackRate: PlaybackRate.HALF);
                   break;
                 case '0.25':
-                  widget.controller.value =
-                      widget.controller.value.copyWith(playbackRate: PlaybackRate.QUARTER);
+                  widget.controller.value = widget.controller.value
+                      .copyWith(playbackRate: PlaybackRate.QUARTER);
                   break;
                 default:
-                  widget.controller.value =
-                      widget.controller.value.copyWith(playbackRate: PlaybackRate.NORMAL);
+                  widget.controller.value = widget.controller.value
+                      .copyWith(playbackRate: PlaybackRate.NORMAL);
               }
             },
           ),
           JavascriptChannel(
             name: 'Errors',
             onMessageReceived: (JavascriptMessage message) {
-              widget.controller.value =
-                  widget.controller.value.copyWith(errorCode: int.tryParse(message.message) ?? 0);
+              widget.controller.value = widget.controller.value
+                  .copyWith(errorCode: int.tryParse(message.message) ?? 0);
             },
           ),
           JavascriptChannel(
@@ -155,7 +156,7 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
             onMessageReceived: (JavascriptMessage message) {
               var videoData = jsonDecode(message.message);
               double duration = videoData['duration'] * 1000;
-              print("VideoData ${message.message}");
+              //print("VideoData ${message.message}");
               widget.controller.value = widget.controller.value.copyWith(
                 duration: Duration(
                   milliseconds: duration.floor(),
@@ -187,8 +188,8 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
           _webController.complete(webController);
           _webController.future.then(
             (controller) {
-              widget.controller.value =
-                  widget.controller.value.copyWith(webViewController: webController);
+              widget.controller.value = widget.controller.value
+                  .copyWith(webViewController: webController);
             },
           );
         },
