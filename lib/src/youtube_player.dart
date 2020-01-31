@@ -260,6 +260,13 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
       _inFullScreen = false;
       Navigator.pop<Duration>(context, controller.value.position);
     }
+
+    if (controller.value.playerState == PlayerState.PLAYING &&
+        controller.tmpSeekTime != null) {
+      var tmp = controller.tmpSeekTime;
+      controller.tmpSeekTime = null;
+      controller.seekTo(tmp);
+    }
     if (mounted) {
       setState(() {});
     }
@@ -549,10 +556,18 @@ class YoutubePlayerValue {
 
 class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
   final String initialSource;
+  // if video is not playing, save seekTime to here, when playing then real seek
+  Duration tmpSeekTime;
 
   YoutubePlayerController([
     this.initialSource = "",
   ]) : super(YoutubePlayerValue(isReady: false));
+
+  // set tmp seek time from outside
+  void makeSureSeekTo(Duration tmpSeekTime) {
+    this.tmpSeekTime = tmpSeekTime;
+    this.play();
+  }
 
   _evaluateJS(String javascriptString) {
     value.webViewController?.evaluateJavascript(javascriptString);
