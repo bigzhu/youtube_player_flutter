@@ -68,6 +68,7 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
 
   @override
   Widget build(BuildContext context) {
+    //print("controller.value.playerState=" + controller.value.playerState.toString());
     if (controller.hashCode != widget.controller.hashCode) {
       controller = widget.controller;
       _attachListenerToController();
@@ -75,9 +76,10 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
     return controller.value.playerState == PlayerState.BUFFERING
         ? widget.bufferIndicator
         : Visibility(
-            visible: widget.showControls.value ||
-                controller.value.playerState == PlayerState.CUED ||
-                !controller.value.isPlaying,
+            visible: (widget.showControls.value ||
+                    controller.value.playerState == PlayerState.CUED ||
+                    !controller.value.isPlaying) &&
+                (controller.value.playerState != PlayerState.UNKNOWN),
             child: Material(
               color: Colors.transparent,
               child: InkWell(
