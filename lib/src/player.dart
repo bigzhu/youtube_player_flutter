@@ -33,7 +33,6 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    print("bigzhu!!! AppLifecycleState=" + state.toString());
     switch (state) {
       case AppLifecycleState.resumed:
         if (isSuspendingPaused) {
@@ -210,11 +209,11 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
     // String baseUrl = 'https://sarbagyadhaubanjar.github.io/youtube_player';
     String baseUrl = 'https://bigzhu.github.io/youtube_player';
     if (Platform.isAndroid) {
-      return '$baseUrl/android';
+      baseUrl = '$baseUrl/android';
     } else if (Platform.isIOS) {
-      return '$baseUrl/ios';
-    } else {
-      return 'https://flutter.io';
+      baseUrl = '$baseUrl/ios';
     }
+    baseUrl = '$baseUrl?cc_load_policy=1';
+    return baseUrl;
   }
 }

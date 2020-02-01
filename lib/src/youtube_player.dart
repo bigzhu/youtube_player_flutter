@@ -178,6 +178,9 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
 
   bool _firstLoad = true;
 
+  // save CCOn State
+  bool _isCCOn = false;
+
   @override
   void initState() {
     super.initState();
@@ -555,6 +558,8 @@ class YoutubePlayerValue {
 }
 
 class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
+  //is on CC status
+  bool isCCon = false;
   final String initialSource;
   // if video is not playing, save seekTime to here, when playing then real seek
   Duration tmpSeekTime;
@@ -644,4 +649,23 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
   void enterFullScreen() => value = value.copyWith(isFullScreen: true);
 
   void exitFullScreen() => value = value.copyWith(isFullScreen: false);
+
+  // add cc set
+//player.setOption(module, option, value)
+  void setCCFontSize(int size) =>
+      _evaluateJS("setOption('cc', 'fontSize',$size)");
+  void setCCReload() => _evaluateJS("setOption('cc', 'reload',true)");
+
+  // 默认打开英文
+  void onCC() {
+    _evaluateJS(
+        'player.setOption("captions", "track", {"languageCode": "es"})');
+    _evaluateJS("player.loadModule('captions')");
+    this.isCCon = true;
+  }
+
+  void offCC() {
+    _evaluateJS("player.unloadModule('captions')");
+    this.isCCon = false;
+  }
 }

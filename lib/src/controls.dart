@@ -198,12 +198,28 @@ class _BottomBarState extends State<BottomBar> {
               fontSize: 12.0,
             ),
           ),
+          // is show subtitles, add by bigzhu
+          IconButton(
+            icon: Icon(
+              Icons.subtitles,
+              // if on show tealAccent else white
+              color: this.controller.isCCon ? Colors.tealAccent : Colors.white,
+            ),
+            onPressed: () {
+              if (this.controller.isCCon) {
+                widget.controller.offCC();
+              } else {
+                widget.controller.onCC();
+              }
+            },
+          ),
           Theme(
             data: Theme.of(context),
             child: PopupMenuButton<PlaybackRate>(
               onSelected: controller.setPlaybackRate,
               child: Padding(
-                padding: EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 8.0),
+                  padding: EdgeInsets.fromLTRB(8.0, 8.0, 0.0, 8.0),
+                  /*
                 child: Image.asset(
                   'assets/speedometer.png',
                   package: 'youtube_player_flutter',
@@ -211,7 +227,11 @@ class _BottomBarState extends State<BottomBar> {
                   height: 20.0,
                   color: Colors.white,
                 ),
-              ),
+                */
+                  child: Icon(
+                    Icons.toys,
+                    color: Colors.white,
+                  )),
               tooltip: 'PlayBack Rate',
               itemBuilder: (context) => [
                 _popUpItem('2.0', PlaybackRate.DOUBLE),
