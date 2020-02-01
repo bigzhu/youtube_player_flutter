@@ -180,6 +180,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
 
   // save CCOn State
   bool _isCCOn = false;
+  bool _isInitCCOn = false;
 
   @override
   void initState() {
@@ -221,6 +222,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
         controller.value.isEvaluationReady &&
         _firstLoad) {
       _firstLoad = false;
+
       widget.flags.autoPlay
           ? controller.load(startAt: widget.startAt.inSeconds)
           : controller.cue(startAt: widget.startAt.inSeconds);
@@ -269,6 +271,14 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
       var tmp = controller.tmpSeekTime;
       controller.tmpSeekTime = null;
       controller.seekTo(tmp);
+    }
+
+    //播放时才能真正关掉字幕
+    if (controller.value.playerState == PlayerState.PLAYING &&
+        this._isInitCCOn == false) {
+      this._isInitCCOn = true;
+      //defalut off CC
+      controller.offCC();
     }
     if (mounted) {
       setState(() {});
