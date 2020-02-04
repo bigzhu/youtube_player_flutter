@@ -179,7 +179,6 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
   bool _firstLoad = true;
 
   // save CCOn State
-  bool _isCCOn = false;
   bool _isInitCCOn = false;
 
   @override
