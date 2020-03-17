@@ -91,7 +91,7 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
                 child: AnimatedIcon(
                   icon: AnimatedIcons.play_pause,
                   progress: _animController.view,
-                  color: Colors.tealAccent,
+                  color: Colors.blueGrey,
                   size: 60.0,
                 ),
               ),
@@ -202,8 +202,8 @@ class _BottomBarState extends State<BottomBar> {
           IconButton(
             icon: Icon(
               Icons.subtitles,
-              // if on show tealAccent else white
-              color: this.controller.isCCon ? Colors.tealAccent : Colors.white,
+              // if on show blueGrey else white
+              color: this.controller.isCCon ? Colors.blueGrey : Colors.white,
             ),
             onPressed: () {
               if (this.controller.isCCon) {
