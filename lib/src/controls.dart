@@ -91,7 +91,7 @@ class _PlayPauseButtonState extends State<PlayPauseButton>
                 child: AnimatedIcon(
                   icon: AnimatedIcons.play_pause,
                   progress: _animController.view,
-                  color: Colors.blueGrey,
+                  color: Colors.white,
                   size: 60.0,
                 ),
               ),
@@ -475,7 +475,9 @@ class _TouchShutterState extends State<TouchShutter> {
             child: AnimatedContainer(
               duration: Duration(milliseconds: 300),
               decoration: BoxDecoration(
-                color: widget.showControls.value
+                // if not playing always dimm
+                color: (widget.showControls.value ||
+                        !widget.controller.value.isPlaying)
                     ? Colors.black.withAlpha(150)
                     : Colors.transparent,
               ),

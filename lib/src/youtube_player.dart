@@ -439,7 +439,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
                       width: 70.0,
                       height: 70.0,
                       child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation(Colors.blueGrey),
+                        valueColor: AlwaysStoppedAnimation(Colors.white),
                       ),
                     ),
               ),
