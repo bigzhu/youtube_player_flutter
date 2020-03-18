@@ -213,7 +213,7 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
     } else if (Platform.isIOS) {
       baseUrl = '$baseUrl/ios';
     }
-    baseUrl = '$baseUrl?cc_load_policy=1';
+    baseUrl = '$baseUrl?cc_load_policy=1&v=3';
     return baseUrl;
   }
 }
