@@ -119,10 +119,8 @@ class YoutubePlayer extends StatefulWidget {
     if (trimWhitespaces) url = url.trim();
 
     for (var exp in [
-      RegExp(
-          r"^https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$"),
-      RegExp(
-          r"^https:\/\/(?:www\.|m\.)?youtube(?:-nocookie)?\.com\/embed\/([_\-a-zA-Z0-9]{11}).*$"),
+      RegExp(r"^https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$"),
+      RegExp(r"^https:\/\/(?:www\.|m\.)?youtube(?:-nocookie)?\.com\/embed\/([_\-a-zA-Z0-9]{11}).*$"),
       RegExp(r"^https:\/\/youtu\.be\/([_\-a-zA-Z0-9]{11}).*$")
     ]) {
       Match match = exp.firstMatch(url);
@@ -133,9 +131,7 @@ class YoutubePlayer extends StatefulWidget {
   }
 
   /// Grabs YouTube video's thumbnail for provided video id.
-  static String getThumbnail(
-      {@required String videoId,
-      ThumbnailQuality quality = ThumbnailQuality.STANDARD}) {
+  static String getThumbnail({@required String videoId, ThumbnailQuality quality = ThumbnailQuality.STANDARD}) {
     String _thumbnailUrl = 'https://i3.ytimg.com/vi/$videoId/';
     switch (quality) {
       case ThumbnailQuality.DEFAULT:
@@ -207,8 +203,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
   _loadController({WebViewController webController}) {
     controller = YoutubePlayerController(widget.videoId);
     if (webController != null) {
-      controller.value =
-          controller.value.copyWith(webViewController: webController);
+      controller.value = controller.value.copyWith(webViewController: webController);
     }
     if (widget.onPlayerInitialized != null) {
       widget.onPlayerInitialized(controller);
@@ -217,9 +212,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
   }
 
   void listener() async {
-    if (controller.value.isReady &&
-        controller.value.isEvaluationReady &&
-        _firstLoad) {
+    if (controller.value.isReady && controller.value.isEvaluationReady && _firstLoad) {
       _firstLoad = false;
 
       widget.flags.autoPlay
@@ -265,16 +258,14 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
       Navigator.pop<Duration>(context, controller.value.position);
     }
 
-    if (controller.value.playerState == PlayerState.PLAYING &&
-        controller.tmpSeekTime != null) {
+    if (controller.value.playerState == PlayerState.PLAYING && controller.tmpSeekTime != null) {
       var tmp = controller.tmpSeekTime;
       controller.tmpSeekTime = null;
       controller.seekTo(tmp);
     }
 
     //播放时才能真正关掉字幕
-    if (controller.value.playerState == PlayerState.PLAYING &&
-        this._isInitCCOn == false) {
+    if (controller.value.playerState == PlayerState.PLAYING && this._isInitCCOn == false) {
       this._isInitCCOn = true;
       //defalut off CC
       controller.offCC();
@@ -359,13 +350,11 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
             controller: controller,
             flags: widget.flags,
           ),
-          if (!controller.value.hasPlayed &&
-              controller.value.playerState == PlayerState.BUFFERING)
+          if (!controller.value.hasPlayed && controller.value.playerState == PlayerState.BUFFERING)
             Container(
               color: Colors.black,
             ),
-          if (!controller.value.hasPlayed && !widget.flags.hideThumbnail)
-            _thumbWidget(),
+          if (!controller.value.hasPlayed && !widget.flags.hideThumbnail) _thumbWidget(),
           if (!widget.flags.hideControls)
             TouchShutter(
               controller,
@@ -421,8 +410,7 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
               left: 0,
               right: 0,
               child: AnimatedOpacity(
-                opacity:
-                    (!widget.flags.hideControls && _showControls.value) ? 1 : 0,
+                opacity: (!widget.flags.hideControls && _showControls.value) ? 1 : 0,
                 duration: Duration(milliseconds: 300),
                 child: Row(
                   children: widget.actions ?? [Container()],
@@ -602,12 +590,10 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
   void pause() => _evaluateJS('pause()');
 
   /// Loads the video as per the [videoId] provided.
-  void load({int startAt = 0}) =>
-      _evaluateJS('loadById("$initialSource", $startAt)');
+  void load({int startAt = 0}) => _evaluateJS('loadById("$initialSource", $startAt)');
 
   /// Cues the video as per the [videoId] provided.
-  void cue({int startAt = 0}) =>
-      _evaluateJS('cueById("$initialSource", $startAt)');
+  void cue({int startAt = 0}) => _evaluateJS('cueById("$initialSource", $startAt)');
 
   /// Mutes the player.
   void mute() => _evaluateJS('mute()');
@@ -617,9 +603,8 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
 
   /// Sets the volume of player.
   /// Max = 100 , Min = 0
-  void setVolume(int volume) => volume >= 0 && volume <= 100
-      ? _evaluateJS('setVolume($volume)')
-      : throw Exception("Volume should be between 0 and 100");
+  void setVolume(int volume) =>
+      volume >= 0 && volume <= 100 ? _evaluateJS('setVolume($volume)') : throw Exception("Volume should be between 0 and 100");
 
   /// Seek to any position. Video auto plays after seeking.
   /// The optional allowSeekAhead parameter determines whether the player will make a new request to the server
@@ -632,8 +617,7 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
   }
 
   /// Sets the size in pixels of the player.
-  void setSize(Size size) =>
-      _evaluateJS('setSize(${size.width * 100},${size.height * 100})');
+  void setSize(Size size) => _evaluateJS('setSize(${size.width * 100},${size.height * 100})');
 
   void setPlaybackRate(PlaybackRate rate) {
     switch (rate) {
@@ -661,20 +645,18 @@ class YoutubePlayerController extends ValueNotifier<YoutubePlayerValue> {
 
   // add cc set
 //player.setOption(module, option, value)
-  void setCCFontSize(int size) =>
-      _evaluateJS("setOption('cc', 'fontSize',$size)");
+  void setCCFontSize(int size) => _evaluateJS("setOption('cc', 'fontSize',$size)");
   void setCCReload() => _evaluateJS("setOption('cc', 'reload',true)");
 
   // 默认打开英文
   void onCC() {
-    _evaluateJS(
-        'player.setOption("captions", "track", {"languageCode": "es"})');
+    _evaluateJS('player.setOption("captions", "track", {"languageCode": "es"})');
     _evaluateJS("player.loadModule('captions')");
-    this.isCCon = true;
+    //this.isCCon = true;
   }
 
   void offCC() {
     _evaluateJS("player.unloadModule('captions')");
-    this.isCCon = false;
+    //this.isCCon = false;
   }
 }

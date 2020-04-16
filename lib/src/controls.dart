@@ -14,8 +14,7 @@ class PlayPauseButton extends StatefulWidget {
   _PlayPauseButtonState createState() => _PlayPauseButtonState();
 }
 
-class _PlayPauseButtonState extends State<PlayPauseButton>
-    with SingleTickerProviderStateMixin {
+class _PlayPauseButtonState extends State<PlayPauseButton> with SingleTickerProviderStateMixin {
   bool _isPlaying = false;
 
   YoutubePlayerController ytController;
@@ -148,11 +147,8 @@ class _BottomBarState extends State<BottomBar> {
       () {
         if (mounted) {
           setState(() {
-            _currentPosition = controller.value.duration.inMilliseconds == 0
-                ? 0
-                : controller.value.position.inMilliseconds;
-            _remainingDuration =
-                controller.value.duration.inMilliseconds - _currentPosition;
+            _currentPosition = controller.value.duration.inMilliseconds == 0 ? 0 : controller.value.position.inMilliseconds;
+            _remainingDuration = controller.value.duration.inMilliseconds - _currentPosition;
           });
         }
       },
@@ -203,13 +199,15 @@ class _BottomBarState extends State<BottomBar> {
             icon: Icon(
               Icons.subtitles,
               // if on show blueGrey else white
-              color: this.controller.isCCon ? Colors.blueGrey : Colors.white,
+              color: this.controller.isCCon ? Colors.teal : Colors.white,
             ),
             onPressed: () {
               if (this.controller.isCCon) {
                 widget.controller.offCC();
+                this.controller.isCCon = false;
               } else {
                 widget.controller.onCC();
+                this.controller.isCCon = true;
               }
             },
           ),
@@ -246,9 +244,7 @@ class _BottomBarState extends State<BottomBar> {
               ? SizedBox(width: 10)
               : IconButton(
                   icon: Icon(
-                    controller.value.isFullScreen
-                        ? Icons.fullscreen_exit
-                        : Icons.fullscreen,
+                    controller.value.isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen,
                     color: Colors.white,
                   ),
                   onPressed: () {
@@ -320,11 +316,9 @@ class _LiveBottomBarState extends State<LiveBottomBar> {
         if (mounted) {
           setState(() {
             _currentPosition = controller.value.position.inMilliseconds;
-            _currentSliderPosition =
-                controller.value.duration.inMilliseconds == 0
-                    ? 0
-                    : controller.value.position.inMilliseconds /
-                        controller.value.duration.inMilliseconds;
+            _currentSliderPosition = controller.value.duration.inMilliseconds == 0
+                ? 0
+                : controller.value.position.inMilliseconds / controller.value.duration.inMilliseconds;
           });
         }
       },
@@ -359,9 +353,7 @@ class _LiveBottomBarState extends State<LiveBottomBar> {
                 onChanged: (value) {
                   controller.seekTo(
                     Duration(
-                      milliseconds:
-                          (controller.value.duration.inMilliseconds * value)
-                              .round(),
+                      milliseconds: (controller.value.duration.inMilliseconds * value).round(),
                     ),
                   );
                 },
@@ -391,14 +383,11 @@ class _LiveBottomBarState extends State<LiveBottomBar> {
               ? SizedBox(width: 10)
               : IconButton(
                   icon: Icon(
-                    controller.value.isFullScreen
-                        ? Icons.fullscreen_exit
-                        : Icons.fullscreen,
+                    controller.value.isFullScreen ? Icons.fullscreen_exit : Icons.fullscreen,
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    controller.value = controller.value
-                        .copyWith(isFullScreen: !controller.value.isFullScreen);
+                    controller.value = controller.value.copyWith(isFullScreen: !controller.value.isFullScreen);
                   },
                 ),
         ],
@@ -454,14 +443,9 @@ class _TouchShutterState extends State<TouchShutter> {
             },
             onHorizontalDragUpdate: (details) {
               delta = details.globalPosition.dx - dragStartPos;
-              seekToPosition =
-                  (widget.controller.value.position.inMilliseconds +
-                          delta * 1000)
-                      .round();
+              seekToPosition = (widget.controller.value.position.inMilliseconds + delta * 1000).round();
               setState(() {
-                seekDuration = (delta < 0 ? "- " : "+ ") +
-                    durationFormatter(
-                        (delta < 0 ? -1 : 1) * (delta * 1000).round());
+                seekDuration = (delta < 0 ? "- " : "+ ") + durationFormatter((delta < 0 ? -1 : 1) * (delta * 1000).round());
                 if (seekToPosition < 0) seekToPosition = 0;
                 seekPosition = durationFormatter(seekToPosition);
               });
@@ -476,8 +460,7 @@ class _TouchShutterState extends State<TouchShutter> {
               duration: Duration(milliseconds: 300),
               decoration: BoxDecoration(
                 // if not playing always dimm
-                color: (widget.showControls.value ||
-                        !widget.controller.value.isPlaying)
+                color: (widget.showControls.value || !widget.controller.value.isPlaying)
                     ? Colors.black.withAlpha(150)
                     : Colors.transparent,
               ),
