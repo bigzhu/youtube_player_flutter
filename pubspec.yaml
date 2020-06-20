@@ -11,7 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^0.3.22+1
+    ##webview_flutter: ^0.3.22+1
+  webview_flutter:
+    path: ./webview_flutter-0.3.22+1/
   cached_network_image: ^2.2.0+1
 
 dev_dependencies:
