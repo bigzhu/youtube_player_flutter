@@ -64,6 +64,7 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
     return IgnorePointer(
       ignoring: true,
       child: WebView(
+        allowsInlineMediaPlayback: true,
         initialUrl: player,
         javascriptMode: JavascriptMode.unrestricted,
         initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
