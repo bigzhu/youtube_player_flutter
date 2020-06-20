@@ -293,11 +293,11 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/webview_flutter"
-      ref: inline-media-behavior
-      resolved-ref: "184b233e43a186dec3bfeab75d34b59b889d3701"
+      ref: master
+      resolved-ref: c03166bc12791bebc172b63259bd7200c052187e
       url: "https://github.com/alexmarkley/plugins"
     source: git
-    version: "0.3.19+10"
+    version: "0.3.19+9"
   xdg_directories:
     dependency: transitive
     description:
