@@ -11,9 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    ##webview_flutter: ^0.3.22+1
   webview_flutter:
-    path: ./webview_flutter-0.3.22+1/
+    git:
+      url: https://github.com/alexmarkley/plugins
+      path: tree/inline-media-behavior/packages/webview_flutter  
+      ref: inline-media-behavior
   cached_network_image: ^2.2.0+1
 
 dev_dependencies:
