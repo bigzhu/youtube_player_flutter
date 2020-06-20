@@ -289,15 +289,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
-  webview_flutter:
-    dependency: "direct main"
-    description:
-      path: "packages/webview_flutter"
-      ref: HEAD
-      resolved-ref: "644439372c60104eb7352a56276043e2937a8456"
-      url: "https://github.com/sarbagyastha/plugins"
-    source: git
-    version: "0.3.15+2"
   xdg_directories:
     dependency: transitive
     description:
