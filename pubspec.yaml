@@ -14,7 +14,7 @@ dependencies:
   webview_flutter:
     git:
       url: https://github.com/alexmarkley/plugins
-      path: tree/inline-media-behavior/packages/webview_flutter  
+      path: packages/webview_flutter  
       ref: inline-media-behavior
   cached_network_image: ^2.2.0+1
 
