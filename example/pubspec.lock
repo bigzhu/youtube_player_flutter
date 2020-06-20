@@ -293,11 +293,11 @@ packages:
     dependency: transitive
     description:
       path: "packages/webview_flutter"
-      ref: master
-      resolved-ref: c03166bc12791bebc172b63259bd7200c052187e
+      ref: HEAD
+      resolved-ref: "184b233e43a186dec3bfeab75d34b59b889d3701"
       url: "https://github.com/alexmarkley/plugins"
     source: git
-    version: "0.3.19+9"
+    version: "0.3.19+10"
   xdg_directories:
     dependency: transitive
     description:
