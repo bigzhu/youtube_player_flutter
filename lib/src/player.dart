@@ -201,12 +201,14 @@ class __PlayerState extends State<_Player> with WidgetsBindingObserver {
 
   String get player {
     // String baseUrl = 'https://sarbagyadhaubanjar.github.io/youtube_player';
-    String baseUrl = 'https://bigzhu.github.io/youtube_player';
+    String baseUrl = 'https://bigzhu.github.io/youtube_player/android';
+    /*
     if (Platform.isAndroid) {
       baseUrl = '$baseUrl/android';
     } else if (Platform.isIOS) {
       baseUrl = '$baseUrl/ios';
     }
+    */
     baseUrl = '$baseUrl?cc_load_policy=1&v=3';
     return baseUrl;
   }
