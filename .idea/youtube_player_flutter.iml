@@ -3,6 +3,7 @@
   <component name="FacetManager">
     <facet type="android" name="Android">
       <configuration>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../youtube_player_flutter/gen" />
         <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../youtube_player_flutter/gen" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../youtube_player_flutter/AndroidManifest.xml" />

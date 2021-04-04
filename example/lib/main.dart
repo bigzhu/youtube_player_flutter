@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../lib/youtube_player_flutter.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -132,9 +132,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   TextFormField(
                     controller: _idController,
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Enter youtube \<video id\> or \<link\>"),
+                    decoration:
+                        InputDecoration(border: OutlineInputBorder(), hintText: "Enter youtube \<video id\> or \<link\>"),
                   ),
                   SizedBox(
                     height: 10.0,
@@ -144,8 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       setState(() {
                         _videoId = _idController.text;
                         // If text is link then converting to corresponding id.
-                        if (_videoId.contains("http"))
-                          _videoId = YoutubePlayer.convertUrlToId(_videoId);
+                        if (_videoId.contains("http")) _videoId = YoutubePlayer.convertUrlToId(_videoId);
                       });
                     },
                     child: Container(
@@ -168,14 +166,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: <Widget>[
                       IconButton(
                         icon: Icon(
-                          _controller.value.isPlaying
-                              ? Icons.play_arrow
-                              : Icons.pause,
+                          _controller.value.isPlaying ? Icons.play_arrow : Icons.pause,
                         ),
                         onPressed: () {
-                          _controller.value.isPlaying
-                              ? _controller.pause()
-                              : _controller.play();
+                          _controller.value.isPlaying ? _controller.pause() : _controller.play();
                           setState(() {});
                         },
                       ),
